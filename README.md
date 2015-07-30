@@ -1,5 +1,5 @@
 # grunt-sftp-deploy-i
-This is a copy of [grunt](https://github.com/gruntjs/grunt) with added functionality to upload only selected files from directory by specifying them by "include" option. Below is it's readme with added documentation for new option.
+This is a copy of [grunt-sftp-deploy](https://github.com/thrashr888/grunt-sftp-deploy) with added functionality to upload only selected files from directory by specifying them by "include" option. Below is it's readme with added documentation for new option.
 
 
 This is a [grunt](https://github.com/gruntjs/grunt) task for code deployment over the _sftp_ protocol. It is mostly a copy of [grunt-ftp-deploy](https://github.com/zonak/grunt-ftp-deploy), but uses [ssh2](https://github.com/mscdex/ssh2) to provide sftp access instead of [jsftp](https://github.com/sergi/jsftp). And when I say "mostly a copy," I mean I stole it all and added sftp. Including this readme, for now.
