@@ -29,6 +29,7 @@ module.exports = function(grunt) {
   var remoteSep;
   var authVals;
   var exclusions;
+  var inclusions;
   var progressLogger;
   var transferred = 0;
   var with_progress = true;
@@ -59,7 +60,15 @@ module.exports = function(grunt) {
     files = fs.readdirSync(startDir);
     for (i = 0; i < files.length; i++) {
       currFile = startDir + path.sep + files[i];
-      if (!file.isMatch({matchBase: true}, exclusions, currFile)) {
+      if (inclusions && inclusions.length) {
+        if (file.isMatch({matchBase: true}, inclusions, currFile) && !file.isMatch({matchBase: true}, exclusions, currFile)) {
+          tmpPath = path.relative(localRoot, startDir);
+          if (!tmpPath.length) {
+            tmpPath = path.sep;
+          }
+          result[tmpPath].push(files[i]);
+        }
+      } else if (!file.isMatch({matchBase: true}, exclusions, currFile)) {
         if (file.isDir(currFile)) {
           tmpPath = path.relative(localRoot, startDir + path.sep + files[i]);
           if (!_.has(result, tmpPath)) {
@@ -243,6 +252,7 @@ module.exports = function(grunt) {
 
     authVals = getAuthByKey(this.data.auth.authKey);
     exclusions = this.data.exclusions || [];
+    inclusions = this.data.include || [];
 
     toTransfer = dirParseSync(localRoot);
     progressLogger = new progress('  transferred=[:current/:total] elapsed=[:elapseds] overall=[:percent] eta=[:etas] [:bar]', {

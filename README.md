@@ -1,4 +1,6 @@
-# grunt-sftp-deploy
+# grunt-sftp-deploy-i
+This is a copy of [grunt](https://github.com/gruntjs/grunt) with added functionality to upload only selected files from directory by specifying them by "include" option. Below is it's readme with added documentation for new option.
+
 
 This is a [grunt](https://github.com/gruntjs/grunt) task for code deployment over the _sftp_ protocol. It is mostly a copy of [grunt-ftp-deploy](https://github.com/zonak/grunt-ftp-deploy), but uses [ssh2](https://github.com/mscdex/ssh2) to provide sftp access instead of [jsftp](https://github.com/sergi/jsftp). And when I say "mostly a copy," I mean I stole it all and added sftp. Including this readme, for now.
 
@@ -53,6 +55,7 @@ The parameters in our configuration are:
 - **src** - the source location, the local folder that we are transferring to the server
 - **dest** - the destination location, the folder on the server we are deploying to
 - **exclusions** - an optional parameter allowing us to exclude files and folders by utilizing grunt's support for `minimatch`. Please note that the definitions should be relative to the project root
+- **include** - an optional parameter allowing us to include only selected files from src directory by utilizing grunt's support for `minimatch`. Please note that the definitions should be relative to the "src" directory. "exclusions" cann still be used together with this option. 
 - **serverSep** - an optional parameter allowing you to define the server separator in case it differs from your local environment. Useful if you deploy from Windows to Unix
 - **concurrency** - an optional parameter to define the number of concurrent file transfer, default to 4
 - **progress** - an optional parameter to display or not the progress bar
